@@ -187,7 +187,6 @@ public class UnitTest {
                 if (i % 50 == 0)
                     keysToSearch.add(key);
                 redBlackTree.insert(key, "toto" + key);
-
             }
             for (int i = 0; i < keysToSearch.size(); i++) {
                 String ans = redBlackTree.search(keysToSearch.get(i));
@@ -480,15 +479,14 @@ public class UnitTest {
         try {
             Random r = new Random();
             HashSet<Integer> list = new HashSet<>();
-            for (int i = 0; i < 100000 ; i++) {
+            for (int i = 0; i < 100000; i++) {
                 int key = r.nextInt(10000);
                 list.add(key);
                 redBlackTree.insert(key, "soso" + key);
             }
 
-            for (Integer elem : list){
+            for (Integer elem : list)
                 Assert.assertTrue(redBlackTree.delete(elem));
-            }
             INode<Integer, String> node = redBlackTree.getRoot();
             if (!(node == null || node.isNull()))
                 Assert.fail();
@@ -508,20 +506,15 @@ public class UnitTest {
         try {
             Random r = new Random();
             HashSet<Integer> list = new HashSet<>();
-            for (int i = 0; i < 100000 ; i++) {
+            for (int i = 0; i < 100000; i++) {
                 int key = r.nextInt(10000);
                 if (r.nextInt(5) % 4 == 0)
                     list.add(key);
                 redBlackTree.insert(key, "soso" + key);
             }
-            for (Integer elem : list){
-                Assert.assertTrue(redBlackTree.contains(elem));
-            }
-            for (Integer elem : list){
-                if(!redBlackTree.contains(elem))
-                    System.out.println("asd");
+
+            for (Integer elem : list)
                 Assert.assertTrue(redBlackTree.delete(elem));
-            }
             INode<Integer, String> node = redBlackTree.getRoot();
             if ((node == null || node.isNull()))
                 Assert.fail();
@@ -535,8 +528,7 @@ public class UnitTest {
      * Test delete elements while inserting in tree.
      */
     @Test
-    public void testDeleteWhileInsertingInTree()   // pass without verify properties
-    {
+    public void testDeleteWhileInsertingInTree() {
 
         IRedBlackTree<Integer, String> redBlackTree = (IRedBlackTree<Integer, String>) TestRunner.getImplementationInstanceForInterface(IRedBlackTree.class);
 
@@ -553,6 +545,7 @@ public class UnitTest {
                     list.add(key);
                 }
             }
+
             Assert.assertTrue(verifyProps(redBlackTree.getRoot()));
         } catch (Throwable e) {
             TestRunner.fail("Fail to handle deletion", e);
@@ -580,7 +573,6 @@ public class UnitTest {
             INode<Integer, String> node = redBlackTree.getRoot();
             if (!(node == null || node.isNull()))
                 Assert.fail();
-            Assert.assertTrue(verifyProps(node));
         } catch (Throwable e) {
             TestRunner.fail("Fail to handle deletion", e);
         }
@@ -590,8 +582,7 @@ public class UnitTest {
      * Test delete absent elements.
      */
     @Test
-    public void testDeleteAbsentElementsInTree()  //pass without verify props
-    {
+    public void testDeleteAbsentElementsInTree() {
 
         IRedBlackTree<Integer, String> redBlackTree = (IRedBlackTree<Integer, String>) TestRunner.getImplementationInstanceForInterface(IRedBlackTree.class);
 
@@ -609,6 +600,7 @@ public class UnitTest {
                 if (!list.contains(key))
                     Assert.assertFalse(redBlackTree.delete(key));
             }
+
             Assert.assertTrue(verifyProps(redBlackTree.getRoot()));
         } catch (Throwable e) {
             TestRunner.fail("Fail to handle deletion", e);
